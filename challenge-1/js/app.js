@@ -14,6 +14,8 @@
 // will need to work with.
 
 // This function is the equivalent of document ready
+var timeKeeper;
+var startTime;
 $(function() {
 	/* Hints:
 	 		-- Start by registering the click event for the button.
@@ -22,12 +24,26 @@ $(function() {
 	 		-- Input values are strings, remember to parse it!
 			-- Regex for checking digit input is '^\\d+$'
 			-- Look up how setInterval() works, you will need it.
-	*/		
+	*/
+
+    $('#countdownButton').click(function() {
+        timeKeeper = window.setInterval(countDown, 1000);
+        startTime = Date.now();
+    });
+
+
+
 });
 
 function countDown() {
 	// Hint: if time < 0, stop the countdown, otherwise refresh the timer display & call createConfetti().
 	// Hint: to stop countdown, look up clearInterval() function.
+    if(timeKeeper < 0){
+        window.clearInterval(startTime);
+    }
+    else{
+        location.reload();
+    }
 }
 
 function createConfetti() {
